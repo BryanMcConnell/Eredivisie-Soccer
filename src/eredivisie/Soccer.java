@@ -1,4 +1,4 @@
-package com.bryan;
+package eredivisie;
 
 import java.util.Scanner;
 
