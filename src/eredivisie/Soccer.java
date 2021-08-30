@@ -46,12 +46,12 @@ public class Soccer {
 		System.out.println("You selected: " + teamsArray[teamSelectionTwo -1]);
 		System.out.println(teamsArray[teamSelectionTwo -1] + " was ranked " + rankingArray[teamSelectionTwo -1]);
 
-	// Assigned an excitement rating to each team
+	// Assigns an excitement rating to each team
 		excitementTeamOne = (double)rankingArray[teamSelectionOne -1] + ((double)goalsRankingArray[teamSelectionOne -1] / 2);
 		excitementTeamTwo = (double)rankingArray[teamSelectionTwo -1] + ((double)goalsRankingArray[teamSelectionTwo -1] / 2);
 		
 
-	// Comparing the two teams
+	// Compares the two teams
 		if (rankingArray[teamSelectionOne -1] > rankingArray[teamSelectionTwo -1])
 			System.out.println(teamsArray[teamSelectionTwo -1] +" was ranked better.");
 			else if (rankingArray[teamSelectionOne -1] < rankingArray[teamSelectionTwo -1])
