@@ -1,5 +1,6 @@
 package eredivisie;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -7,8 +8,8 @@ import java.util.Scanner;
 public class Soccer {
 
 	public static void main(String[] args) {
-
-	Scanner scanner = new Scanner(System.in);
+		
+		Scanner scanner = new Scanner(System.in);
 
 	// Teams in the Eredivisie
 		final String[] teamsArray = {
@@ -30,38 +31,40 @@ public class Soccer {
 		double totalExcitement = 0;
 
 		double[] teamExcitement = new double[18];
+		double max = Double.MIN_VALUE;
+		double secondMax = Double.MAX_VALUE;
 
 		String result = "";
 
 		System.out.println("The teams in the Eredivisie are:");
 		for (int i = 0; i < teamsArray.length; i++)
-			System.out.println(i+1 + " " + teamsArray[i]);
+			System.out.println(i + 1 + " " + teamsArray[i]);
 
 		System.out.print("Select the first team by number: ");
 
 		byte teamSelectionOne = scanner.nextByte();
 
 	// Matches the first team selected with their ranking
-		System.out.println("You selected: " + teamsArray[teamSelectionOne -1]);
-		System.out.println(teamsArray[teamSelectionOne -1] + " was ranked " + rankingArray[teamSelectionOne -1]);
+		System.out.println("You selected: " + teamsArray[teamSelectionOne - 1]);
+		System.out.println(teamsArray[teamSelectionOne - 1] + " was ranked " + rankingArray[teamSelectionOne - 1]);
 
 		System.out.println("Select the second team by number: ");
 
 		byte teamSelectionTwo = scanner.nextByte();
 
 	// Matches the second team selected with their ranking
-		System.out.println("You selected: " + teamsArray[teamSelectionTwo -1]);
-		System.out.println(teamsArray[teamSelectionTwo -1] + " was ranked " + rankingArray[teamSelectionTwo -1]);
+		System.out.println("You selected: " + teamsArray[teamSelectionTwo - 1]);
+		System.out.println(teamsArray[teamSelectionTwo - 1] + " was ranked " + rankingArray[teamSelectionTwo - 1]);
 
 	// Assigns an excitement rating to each team & overall (want to get rid of total)
-		excitementTeamOne = rankingArray[teamSelectionOne -1] + ((double)goalsRankingArray[teamSelectionOne -1] / 2);
-		excitementTeamTwo = rankingArray[teamSelectionTwo -1] + ((double)goalsRankingArray[teamSelectionTwo -1] / 2);
+		excitementTeamOne = rankingArray[teamSelectionOne - 1] + ((double)goalsRankingArray[teamSelectionOne - 1] / 2);
+		excitementTeamTwo = rankingArray[teamSelectionTwo - 1] + ((double)goalsRankingArray[teamSelectionTwo - 1] / 2);
 		totalExcitement = excitementTeamOne + excitementTeamTwo;
 
 	// Compares the two teams
-		if (rankingArray[teamSelectionOne -1] > rankingArray[teamSelectionTwo -1])
-			System.out.println(teamsArray[teamSelectionTwo -1] +" was ranked better.");
-		else if (rankingArray[teamSelectionOne -1] < rankingArray[teamSelectionTwo -1])
+		if (rankingArray[teamSelectionOne - 1] > rankingArray[teamSelectionTwo - 1])
+			System.out.println(teamsArray[teamSelectionTwo - 1] +" was ranked better.");
+		else if (rankingArray[teamSelectionOne - 1] < rankingArray[teamSelectionTwo - 1])
 			System.out.println(teamsArray[teamSelectionOne - 1] +" was ranked better");
 		else
 			System.out.println("Error in selection");
@@ -73,10 +76,10 @@ public class Soccer {
 
 		System.out.println("The result:");
 		for (int i = 0; i < teamExcitement.length; i++)
-			System.out.println(i+1 + " " + teamsArray[i] + " " + teamExcitement[i]);
+			
+			System.out.println(i + 1 + " " + teamsArray[i] + " " + teamExcitement[i]);
 
-	// Display excitement level of a game between two teams (want to use teamExcitement
-	// instead of totalExcitement)
+	// Display value level of a game between two teams 
 
 		if (totalExcitement < 5)
 			System.out.println("This will be a very exciting game!");
@@ -86,9 +89,37 @@ public class Soccer {
 			System.out.println("This will be an interesting game.");
 		else
 			System.out.println("This might be a dull one.");
-
-
-
+		
+	// Display the value level of all possible games
+		
+		for (int i = 0; i < (teamExcitement.length); i++) {
+			
+			for (int m = (i + 1); m < (teamExcitement.length); m++) {
+				
+				
+				System.out.println(teamExcitement[m] + teamExcitement[i] + " " + teamsArray[i] + 
+				" vs " + teamsArray[m]);
+				
+				System.out.println("\n");
+				
+	// Supposed to find the highest and second highest values, but it doesn't work
+				for (double value : teamExcitement) {
+					if (value > max) {
+						secondMax = max;
+						max = value;
+					} else if (value > secondMax && value < max) {
+						secondMax = value;
+					}
+					
+				}
+				
+				System.out.println("Highest is " + max);
+				System.out.println("Second Highest is " + secondMax);
+			}
+			
+		}
+		
 	}
+	
 }
 
