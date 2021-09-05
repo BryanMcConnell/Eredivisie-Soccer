@@ -78,24 +78,35 @@ public class Soccer {
 		else
 			System.out.println("This might be a dull one.");
 		
+		double low = 1000;
+		double high = 0;
+		int teamLowOne = 0, teamLowTwo = 0;
+		int teamHighOne = 0, teamHighTwo = 0;
 	// Display the value level of all possible games
-		for (int i = 0; i < (teamExcitement.length); i++) {
+		for (int i = 0; i < (teamExcitement.length - 1); i++) {
 			for (int m = (i + 1); m < (teamExcitement.length); m++) {
-				System.out.println(teamExcitement[m] + teamExcitement[i] + " " + teamsArray[i] + 
+				System.out.println(teamExcitement[i] + teamExcitement[m] + " " + teamsArray[i] + 
 				" vs " + teamsArray[m]);
 				System.out.println("\n");
+	
+	// Find the highest and lowest
 				
-	// Supposed to find the highest and second highest values, but it doesn't work
-				for (double value : teamExcitement) {
-					if (value > max) {
-						secondMax = max;
-						max = value;
-					} else if (value > secondMax && value < max) {
-						secondMax = value;
-					}
+				double currentHigh = teamExcitement[i] + teamExcitement[m];
+				if (currentHigh > high) {
+					teamHighOne = i + 1;
+					teamHighTwo = m + 1;
+					high = currentHigh;
 				}
-				System.out.println("Highest is " + max);
-				System.out.println("Second Highest is " + secondMax);
+				if (currentHigh < low ) {
+					teamLowOne = i + 1;
+					teamLowTwo = m + 1;
+					low = currentHigh;
+				}
+				
+				System.out.println("The most exciting game is " + teamsArray[teamLowOne - 1] + 
+				" and " + teamsArray[teamLowTwo - 1] + " " + low);
+				System.out.println("The least exciting game i s" + teamsArray[teamHighOne - 1] + 
+				" and " + teamsArray[teamHighTwo - 1] + " " + high);
 			}
 		}
 	}
